@@ -2,7 +2,7 @@ using System;
 using UnitTest_Sample.Fundamentals;
 using Xunit;
 
-namespace UnitTest_Sample.UnitTest
+namespace UnitTest_Sample.UnitTest.FundamentalsTest
 {
     public class ReservationTests
     {
