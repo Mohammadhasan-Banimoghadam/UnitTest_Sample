@@ -51,5 +51,24 @@ namespace UnitTest_Sample.UnitTest.FundamentalsTest
             var result = _math.Max(firstNumber, secondNumber);
             Assert.Equal(expectedNumber, result);
         }
+
+        [Fact]
+        public void GetOddNumbers_limitIsGreaterThanZero_ReturnOddNumbersUpToLimit()
+        {
+            var result = _math.GetOddNumbers(5);
+            Assert.Equal(new[] { 1, 3, 5 }, result);
+        }
+        [Fact]
+        public void GetOddNumbers_limitIsEqualZero_ReturnOddNumbersUpToLimit()
+        {
+            var result = _math.GetOddNumbers(0);
+            Assert.Equal(new int[] { }, result);
+        }
+        [Fact]
+        public void GetOddNumbers_limitIsLessThanZero_ReturnOddNumbersUpToLimit()
+        {
+            var result = _math.GetOddNumbers(-5);
+            Assert.Equal(new int[] { }, result);
+        }
     }
 }
