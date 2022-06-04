@@ -16,29 +16,15 @@ namespace UnitTest_Sample.UnitTest.FundamentalsTest
             _fizzBaz = new FizzBaz();
         }
 
-        [Fact]
-        public void GetOutPut_DividedByThreeAndDividedByFive_ReturnFizzBaz()
+        [Theory]
+        [InlineData(15, "FizzBaz")]
+        [InlineData(6, "Fizz")]
+        [InlineData(5, "Baz")]
+        [InlineData(7, "7")]
+        public void GetOutPut_WhenCalled_ReturnExpectedResult(int number, string expectedResult)
         {
-            var result = _fizzBaz.GetOutPut(15);
-            Assert.Equal("FizzBaz", result);
-        }
-        [Fact]
-        public void GetOutPut_DividedByThree_ReturnFizz()
-        {
-            var result = _fizzBaz.GetOutPut(6);
-            Assert.Equal("Fizz", result);
-        }
-        [Fact]
-        public void GetOutPut_DividedByThreeAndDividedByFive_ReturnBaz()
-        {
-            var result = _fizzBaz.GetOutPut(5);
-            Assert.Equal("Baz", result);
-        }
-        [Fact]
-        public void GetOutPut_NotDividedByThreeAndNotDividedByFive_ReturnNumberStr()
-        {
-            var result = _fizzBaz.GetOutPut(7);
-            Assert.Equal("7", result);
+            var result = _fizzBaz.GetOutPut(number);
+            Assert.Equal(expectedResult, result);
         }
     }
 }

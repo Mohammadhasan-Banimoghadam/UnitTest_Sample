@@ -48,7 +48,7 @@ namespace UnitTest_Sample.UnitTest.FundamentalsTest
             Assert.Equal("c", result);
         }
         [Fact]
-        public void Peek_StackWithAFewObject_RemoveObjectOnTheTopList()
+        public void Pop_StackWithAFewObject_RemoveObjectOnTheTopList()
         {
             //Arrange
             _stack.Push("a");
