@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UnitTest_Sample.Mocking;
 
 namespace UnitTest_Sample
 {
@@ -26,12 +27,12 @@ namespace UnitTest_Sample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UnitTest_Sample", Version = "v1" });
             });
+            services.AddTransient<IFileReader, FileReader>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +55,7 @@ namespace UnitTest_Sample
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
