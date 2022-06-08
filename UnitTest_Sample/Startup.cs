@@ -33,6 +33,7 @@ namespace UnitTest_Sample
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "UnitTest_Sample", Version = "v1" });
             });
             services.AddTransient<IFileReader, FileReader>();
+            services.AddTransient<IVideoRepository, VideoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

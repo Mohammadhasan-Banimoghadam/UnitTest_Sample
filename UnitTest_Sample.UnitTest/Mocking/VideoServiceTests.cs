@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using UnitTest_Sample.Mocking;
 using Moq;
+using Microsoft.EntityFrameworkCore;
 
 namespace UnitTest_Sample.UnitTest.Mocking
 {
@@ -13,11 +14,13 @@ namespace UnitTest_Sample.UnitTest.Mocking
     {
         private VideoService _videoService;
         private Mock<IFileReader> _fileReader;
+        private Mock<IVideoRepository> _videoRepository;
 
         public VideoServiceTests()
         {
             _fileReader = new Mock<IFileReader>();
-            _videoService = new VideoService(_fileReader.Object);
+            _videoRepository = new Mock<IVideoRepository>();
+            _videoService = new VideoService(_fileReader.Object, _videoRepository.Object);
         }
 
         [Fact]
@@ -28,6 +31,14 @@ namespace UnitTest_Sample.UnitTest.Mocking
             var result = _videoService.ReadVideoTitle();
 
             Assert.Contains("error", result, StringComparison.OrdinalIgnoreCase);
+        }
+
+        [Fact]
+        public void GetUnprocessedVideosAsCsv_AllVideosAreProcessed_ReturnAnEmptyString()
+        {
+            _videoRepository.Setup(rp => rp.GetUnprocessedVideos()).Returns(new List<Video>());
+            var result = _videoService.GetUnprocessedVideosAsCsv();
+            Assert.Equal("", result);
         }
     }
 }
